@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Quicksand:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Quicksand", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-pixel: "DotGothic16", monospace;
+
+  --color-cream: #FDFBF7;
+  --color-surface: #FFF8F0;
+  --color-pink-light: #FFEBF0;
+  --color-pink-soft: #FFD1DC;
+  --color-pink-deep: #E8A1B0;
+  --color-pink-warm: #FFB3C6;
+  --color-sage: #D1E0D7;
+  --color-sage-dark: #A5C4B1;
+  --color-tan: #C9A98A;
+  --color-gold: #E8C9A0;
+  --color-border-soft: #EDE0D4;
+  --color-ink: #4A4444;
+  --color-ink-muted: #8C7B6E;
+  --color-border: #4A4444;
+
+  /* Admin palette — warm neutral */
+  --color-admin-bg: #FDFAF6;
+  --color-admin-card: #FFF8F0;
+  --color-admin-accent: #C9A98A;
+  --color-admin-text: #2C2420;
+  --color-admin-muted: #8C7B6E;
+  --color-admin-border: #EDE0D4;
+  --color-admin-highlight: #E8C9A0;
+}
+
+:root {
+  --cream: #FDFBF7;
+  --pink-light: #FFEBF0;
+  --pink-soft: #FFD1DC;
+  --pink-deep: #E8A1B0;
+  --pink-warm: #FFB3C6;
+  --sage: #D1E0D7;
+  --sage-dark: #A5C4B1;
+  --tan: #C9A98A;
+  --gold: #E8C9A0;
+  --ink: #4A4444;
+  --border: #4A4444;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--cream);
+  font-family: "Quicksand", sans-serif;
+  color: var(--ink);
+  margin: 0;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Pixel border utility */
+.pixel-border {
+  border: 4px solid var(--border);
+  box-shadow: 4px 4px 0px var(--sage);
+  border-radius: 12px;
+}
+
+.pixel-border:hover {
+  box-shadow: 6px 6px 0px var(--pink-soft);
+  transform: translate(-2px, -2px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--cream); border-left: 2px solid #EDE0D4; }
+::-webkit-scrollbar-thumb { background: var(--pink-deep); border: 2px solid var(--border); border-radius: 8px; }
+
+/* Admin scrollbar */
+.admin-scroll::-webkit-scrollbar { width: 6px; }
+.admin-scroll::-webkit-scrollbar-track { background: #FFF8F0; }
+.admin-scroll::-webkit-scrollbar-thumb { background: #C9A98A; border-radius: 6px; }
+
+/* Toast animation */
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+.toast-enter { animation: slideInRight 0.3s ease forwards; }
+.toast-exit { animation: slideOutRight 0.3s ease forwards; }
+
+/* Step indicator */
+.step-active {
+  background: var(--pink-deep);
+  border-color: var(--border);
+  color: white;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.step-done {
+  background: var(--sage-dark);
+  border-color: var(--border);
+  color: white;
+}
+.step-inactive {
+  background: white;
+  border-color: #EDE0D4;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 6px;
+  background: #EDE0D4;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--pink-deep);
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* Admin stat card */
+.admin-stat-card {
+  background: white;
+  border: 2px solid #EDE0D4;
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+.admin-stat-card:hover {
+  box-shadow: 0 4px 20px rgba(201,169,138,0.15);
+  transform: translateY(-2px);
+}
+
+/* Badge */
+.badge-pending  { background: #FFF8E1; color: #8C6200; border: 1.5px solid #F9C84A; }
+.badge-approved { background: #E8F5E9; color: #1B5E20; border: 1.5px solid #81C784; }
+.badge-rejected { background: #FFEBEE; color: #B71C1C; border: 1.5px solid #EF9A9A; }
+
+/* Music player bar */
+.music-bar {
+  width: 3px;
+  background: var(--pink-deep);
+  border-radius: 3px;
+  animation: musicPulse 0.8s ease-in-out infinite alternate;
+}
+.music-bar:nth-child(2) { animation-delay: 0.1s; }
+.music-bar:nth-child(3) { animation-delay: 0.2s; }
+.music-bar:nth-child(4) { animation-delay: 0.15s; }
+.music-bar:nth-child(5) { animation-delay: 0.05s; }
+@keyframes musicPulse {
+  from { transform: scaleY(0.3); }
+  to { transform: scaleY(1); }
+}
